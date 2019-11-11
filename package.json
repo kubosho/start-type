@@ -1,0 +1,31 @@
+{
+    "name": "start-type",
+    "version": "1.0.0",
+    "description": "Boilerplate of development environment using TypeScript.",
+    "author": "Shota Kubota <ta2@o2p.jp>",
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "build": "babel ./src --out-dir ./lib --extensions '.ts,.tsx'",
+        "format": "prettier --config .prettierrc.js --write **/*.{js,jsx,ts,tsx}",
+        "lint": "eslint --config .eslintrc.js --ext .ts,.tsx .",
+        "test": "jest",
+        "typecheck": "tsc --project ."
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "@babel/cli": "^7.7.0",
+        "@babel/core": "^7.7.2",
+        "@babel/preset-env": "^7.7.1",
+        "@babel/preset-typescript": "^7.7.2",
+        "@typescript-eslint/eslint-plugin": "^2.6.0",
+        "@typescript-eslint/parser": "^2.6.0",
+        "eslint": "^6.6.0",
+        "eslint-config-prettier": "^6.5.0",
+        "eslint-plugin-prettier": "^3.1.1",
+        "jest": "^24.9.0",
+        "option-t": "^21.0.1",
+        "prettier": "^1.18.2",
+        "typescript": "^3.6.4"
+    }
+}
