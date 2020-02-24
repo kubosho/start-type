@@ -26,6 +26,6 @@
         "jest": "^24.9.0",
         "option-t": "^22.1.1",
         "prettier": "^1.18.2",
-        "typescript": "^3.7.5"
+        "typescript": "^3.8.2"
     }
 }
