@@ -8,6 +8,7 @@
     "scripts": {
         "build": "babel ./src --out-dir ./lib --extensions '.ts,.tsx'",
         "format": "prettier --config .prettierrc.js --write **/*.{js,jsx,ts,tsx}",
+        "check_format": "npm run format && git diff --exit-code",
         "lint": "eslint --config .eslintrc.js --ext .ts,.tsx .",
         "test": "jest",
         "update_snapshot": "jest --updateSnapshot",
