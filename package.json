@@ -10,6 +10,7 @@
         "format": "prettier --config .prettierrc.js --write **/*.{js,jsx,ts,tsx}",
         "lint": "eslint --config .eslintrc.js --ext .ts,.tsx .",
         "test": "jest",
+        "update_snapshot": "jest --updateSnapshot",
         "typecheck": "tsc --project ."
     },
     "dependencies": {},
