@@ -1,0 +1,117 @@
+version: 2.1
+
+###########################################
+# Constants
+###########################################
+workspace_root: &workspace_root /tmp/work
+
+image: &image circleci/node:12.16.1
+
+node_modules_dir: &node_modules_dir node_modules/
+
+###########################################
+# Jobs Definitions
+###########################################
+jobs:
+    init:
+        working_directory: *workspace_root
+        docker:
+            - image: *image
+        steps:
+            - checkout
+            - restore_cache:
+                  name: Package cache restored
+                  keys:
+                      - yarn-packages-{{ checksum "yarn.lock" }}
+            - run:
+                  name: Yarn install
+                  command: yarn install --frozen-lockfile
+            - save_cache:
+                  name: Package cache saved
+                  key: yarn-packages-{{ checksum "yarn.lock" }}
+                  paths:
+                      - ~/.cache/yarn
+            - persist_to_workspace:
+                  root: *workspace_root
+                  paths:
+                      - *node_modules_dir
+
+    lint:
+        working_directory: *workspace_root
+        docker:
+            - image: *image
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: *workspace_root
+            - run:
+                  name: Run lint
+                  command: yarn lint
+
+    check_format:
+        working_directory: *workspace_root
+        docker:
+            - image: *image
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: *workspace_root
+            - run:
+                  name: Auto formatting is done?
+                  command: yarn check_format
+
+    typecheck:
+        working_directory: *workspace_root
+        docker:
+            - image: *image
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: *workspace_root
+            - run:
+                  name: Type check
+                  command: yarn typecheck
+
+    test:
+        working_directory: *workspace_root
+        docker:
+            - image: *image
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: *workspace_root
+            - run:
+                  name: Testing
+                  command: yarn test
+
+###########################################
+# Workflow Conditions
+###########################################
+cond_filters_trunk: &cond_filters_trunk
+    branches:
+        only: master
+
+cond_filters_ignore_trunk: &cond_filters_ignore_trunk
+    branches:
+        ignore: master
+
+###########################################
+# Workflow Definitions
+###########################################
+workflows:
+    version: 2
+    ci_workflow:
+        jobs:
+            - init
+            - lint:
+                  requires:
+                      - init
+            - check_format:
+                  requires:
+                      - init
+            - typecheck:
+                  requires:
+                      - init
+            - test:
+                  requires:
+                      - init
