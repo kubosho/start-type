@@ -3971,10 +3971,10 @@ onetime@^5.1.2:
   dependencies:
     mimic-fn "^2.1.0"
 
-option-t@^27.1.0:
-  version "27.1.0"
-  resolved "https://registry.yarnpkg.com/option-t/-/option-t-27.1.0.tgz#79ed1d11eebaca0355c0833c8413f67049ae8763"
-  integrity sha512-KysElze5CaiKSQPEJlbDZz5e9zYuSo73bz5N5Q5HIKIhYM9RrhMFSmmzGjmy7jPaTEszbuly6PgUwsKEhR3/2Q==
+option-t@^28.1.0:
+  version "28.1.0"
+  resolved "https://registry.yarnpkg.com/option-t/-/option-t-28.1.0.tgz#ade5ad680c237ab9289c9fa8abfe122006dc7fed"
+  integrity sha512-JeGfidd2zDmCGjY8BCtAlqQfVhtZw5uNx36MwZtbEsR9N6CgqKUK+cb8cEHVbYQAGLvERHmgYi0SdFDuxIHkRg==
 
 optionator@^0.8.1, optionator@^0.8.3:
   version "0.8.3"
